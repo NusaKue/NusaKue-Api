@@ -1,41 +1,50 @@
+# 🌟 NusaKue API 🍰🏪  
+**Kenali, Jelajahi, dan Cintai Kue Tradisional Indonesia Lewat Gambar!**
 
-# 🌟 NusaKue API 🍰🏪
-
-API untuk **memprediksi jenis kue tradisional Indonesia** dari gambar menggunakan **TensorFlow.js** dan **Hapi.js**.  
-Mendukung fitur prediksi gambar, manajemen data kue & UMKM, serta pengambilan statistik prediksi teratas.
-
----
-
-## 🚀 Menjalankan
-
-1. **Clone project**:
-    ```bash
-    git clone https://github.com/username/nusakueapi.git
-    cd nusakueapi
-    ```
-
-2. **Install dependencies**:
-    ```bash
-    npm install
-    ```
-
-3. **Jalankan server**:
-    ```bash
-    npm run start
-    ```
-
-4. Buka di browser atau client API:  
-   [http://localhost:3000](http://localhost:3000)
+NusaKue API adalah jembatan pintar yang menghubungkan teknologi dengan kekayaan kuliner Nusantara.  
+Dengan kekuatan **TensorFlow.js** dan **Hapi.js**, API ini mampu mengenali kue tradisional Indonesia hanya dari gambar 📷.  
+Tak hanya itu, Anda juga dapat mengelola data kue, UMKM lokal, melihat statistik tren kue, dan mendapatkan rekomendasi UMKM terbaik! 🇮🇩✨
 
 ---
 
-## 📦 Teknologi
+## 🚀 Cara Memulai
 
-- [TensorFlow.js](https://www.tensorflow.org/js) – model prediksi gambar  
-- [Hapi.js](https://hapi.dev/) – framework API server  
-- [Firebase Firestore](https://firebase.google.com/docs/firestore) – penyimpanan data  
-- [Firebase Cloud Storage](https://firebase.google.com/docs/storage) – penyimpanan gambar  
-- [Sharp](https://sharp.pixelplumbing.com/) – preprocessing gambar  
+### 🔑 Persiapan Firebase
+Project ini membutuhkan file kredensial Firebase (`firebaseKey.json`).  
+Pastikan Anda memiliki file ini dan letakkan di folder src/config sebelum menjalankan server.
+
+
+
+### 1. Clone repositori
+```bash
+git clone https://github.com/username/nusakueapi.git
+cd nusakueapi
+```
+
+### 2. Pasang dependensi
+```bash
+npm install
+```
+
+### 3. Jalankan server
+```bash
+npm run start
+```
+
+### 4. Akses API di browser atau tool API seperti Postman
+```
+http://localhost:3000
+```
+
+---
+
+## 📦 Teknologi yang Digunakan
+
+- 🧠 **TensorFlow.js** – Prediksi kue dari gambar
+- ⚙️ **Hapi.js** – Framework backend untuk menyusun API
+- 🔥 **Firebase Firestore** – Penyimpanan data kue & UMKM
+- 🖼️ **Firebase Cloud Storage** – Penyimpanan gambar
+- ✂️ **Sharp** – Preprocessing gambar agar siap diprediksi
 
 ---
 
@@ -48,64 +57,72 @@ http://localhost:3000
 
 ## 📌 Endpoints
 
-### 🍰 Kue
+### 🍰 Kue – Jelajahi Aneka Kue Tradisional
+| Method | Endpoint       | Deskripsi                                      |
+|--------|----------------|-----------------------------------------------|
+| GET    | `/cakes`       | Lihat daftar lengkap kue Nusantara            |
+| GET    | `/cakes/{id}`  | Lihat detail kue berdasarkan ID               |
+| POST   | `/cakes`       | Tambah kue baru                               |
+| PUT    | `/cakes/{id}`  | Perbarui data kue                             |
+| DELETE | `/cakes/{id}`  | Hapus data kue                                |
 
-| Method | Endpoint        | Deskripsi                     |
-|--------|------------------|-------------------------------|
-| `GET`  | `/cakes`         | Ambil semua data kue         |
-| `GET`  | `/cakes/{id}`    | Ambil detail kue berdasarkan ID |
-| `POST` | `/cakes`         | Tambah kue baru              |
-
-**POST /cakes**  
-Form-data:
-- `nama`: string  
-- `asal`: JSON array string (contoh: `["Jawa", "Sumatra"]`)  
-- `bahan_pembuatan`: JSON array string  
-- `budaya`: string  
-- `cara_pembuatan`: string  
-- `deskripsi`: string  
-- `image`: file  
-
----
-
-### 🤖 Prediksi
-
-| Method | Endpoint           | Deskripsi                                      |
-|--------|--------------------|-----------------------------------------------|
-| `POST` | `/predict`         | Kirim gambar, dapatkan prediksi kue dari model |
-| `GET`  | `/top-predictions` | Ambil 5 kue yang paling sering dikenali        |
-
-**POST /predict**  
-Form-data:
+**Form-data untuk `POST /cakes`:**
+- `nama`: string
+- `asal`: JSON array string (contoh: ["Jawa", "Sumatra"])
+- `bahan_pembuatan`: JSON array string
+- `budaya`: string
+- `cara_pembuatan`: string
+- `deskripsi`: string
 - `image`: file
 
 ---
 
-### 🏪 UMKM
+### 🤖 Prediksi – Kue Apa Ya Ini?
+| Method | Endpoint           | Deskripsi                                   |
+|--------|--------------------|---------------------------------------------|
+| POST   | `/predict`         | Upload gambar, dapatkan prediksi nama kue   |
+| GET    | `/top-predictions` | 5 kue yang paling sering dikenali model     |
 
-| Method | Endpoint                | Deskripsi                                  |
-|--------|-------------------------|--------------------------------------------|
-| `GET`  | `/umkms`                | Ambil semua data UMKM                      |
-| `GET`  | `/umkms/{id}`           | Ambil detail UMKM berdasarkan ID           |
-| `POST` | `/umkms`                | Tambah UMKM baru                           |
-| `GET`  | `/umkms-cakes/{id}`     | Ambil UMKM yang menjual kue berdasarkan ID kue |
-
-**POST /umkms**  
-Form-data:
-- `nama`: string  
-- `alamat`: string  
-- `no_telp`: string  
-- `paling_diminati`: JSON array string (contoh: `["Kue A","Kue B"]`)  
-- `image`: file *(opsional)*
+**Form-data untuk `POST /predict`:**
+- `image`: file (gambar kue)
 
 ---
 
-## 📄 Ringkasan Response Schema
+### 🏪 UMKM – Dukung Pelaku Usaha Lokal
+| Method | Endpoint       | Deskripsi                                      |
+|--------|----------------|-----------------------------------------------|
+| GET    | `/umkms`       | Ambil semua data UMKM                         |
+| GET    | `/umkms/{id}`  | Ambil detail UMKM berdasarkan ID              |
+| POST   | `/umkms`       | Tambah UMKM baru                              |
+| PUT    | `/umkms/{id}`  | Perbarui data UMKM                            |
+| DELETE | `/umkms/{id}`  | Hapus UMKM berdasarkan ID                     |
 
-- **`Cake`**: Detail kue seperti nama, asal, bahan, budaya, cara pembuatan, gambar.
-- **`Umkm`**: Data UMKM seperti nama, alamat, kontak, produk yang diminati.
-- **`PredictionData`**: Hasil prediksi kue, skor keyakinan, metadata kue.
-- **`TopPrediction`**: Daftar kue yang paling sering dikenali model.
-- **`FailResponse` / `ErrorResponse`**: Format standar untuk kesalahan (status dan pesan).
+**Form-data untuk `POST /umkms`:**
+- `nama`: string
+- `alamat`: string
+- `no_telp`: string
+- `paling_diminati`: JSON array string (contoh: ["Kue A","Kue B"])
+- `image`: file (opsional)
 
 ---
+
+### 🎯 Rekomendasi UMKM – Cocok Buat Kamu!
+| Method | Endpoint                | Deskripsi                                      |
+|--------|-------------------------|-----------------------------------------------|
+| GET    | `/recommendation/{id}`  | Rekomendasi UMKM berdasarkan ID kue tertentu  |
+
+---
+
+## 📄 Format Respon
+
+- **Cake** – Info lengkap: nama, asal, bahan, budaya, cara, gambar
+- **Umkm** – Info UMKM: nama, alamat, kontak, produk favorit
+- **PredictionData** – Hasil prediksi: nama kue, skor keyakinan, metadata
+- **TopPrediction** – Daftar 5 kue yang paling sering dikenali
+- **FailResponse / ErrorResponse** – Format error standar: status dan pesan
+
+---
+
+## 🎉 Misi NusaKue
+> NusaKue API adalah langkah awal untuk mendigitalisasi dan mempopulerkan warisan kuliner Indonesia.  
+Dukung UMKM lokal, edukasi generasi muda, dan bangkitkan kembali kecintaan terhadap kue-kue tradisional Nusantara! 🇮🇩🍽️
