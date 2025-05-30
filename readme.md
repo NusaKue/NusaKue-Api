@@ -6,6 +6,10 @@ Dengan kekuatan **TensorFlow.js** dan **Hapi.js**, API ini mampu mengenali kue t
 Tak hanya itu, Anda juga dapat mengelola data kue, UMKM lokal, melihat statistik tren kue, dan mendapatkan rekomendasi UMKM terbaik! 🇮🇩✨
 
 ---
+## 📦 NusaKueApi Dokumentasi
+```
+https://documenter.getpostman.com/view/34670049/2sB2qgcxna
+```
 
 ## 🚀 Cara Memulai
 
